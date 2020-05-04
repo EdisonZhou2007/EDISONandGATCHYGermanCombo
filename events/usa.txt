@@ -1,0 +1,95 @@
+###########################
+# USA Events
+###########################
+
+add_namespace = USA
+
+
+
+# USA becomes monarchist
+country_event = {
+	id = usa_monarchy.27
+	title = usa_monarchy.27.t
+	desc = usa_monarchy.27.d
+	picture = GFX_event_coronation_of_king
+	
+	fire_only_once = yes
+	
+	trigger = {
+		tag = USA
+		has_government = monarchism
+	}
+	
+	mean_time_to_happen = { 
+		days = 2
+	}
+	
+	# Lee Richardson Washington
+	option = {
+		ai_chance = {
+			base = 1
+		}
+		name = usa_monarchy.27.a	
+		create_country_leader = {
+			name = "Lee Washington the 1st"
+			desc = ""
+			picture = "Portrait_USA_monarchy_2.dds"
+			expire = "1965.1.1"
+			ideology = absolute_monarchy
+			traits = {
+			}
+		}
+	}
+	
+	# John Augustine Washington
+	option = {
+		name = usa_monarchy.27.b
+		ai_chance = {
+			base = 1
+		}
+		set_party_name = { ideology = monarchism long_name = USA_Washington_party_long name = USA_Washington_party }
+		create_country_leader = {
+			name = "John Washington The 1st"
+			desc = ""
+			picture = "Portrait_USA_monarchy_4.dds"
+			expire = "1965.1.1"
+			ideology = Absolute_monarchy
+			traits = {
+			}
+		}
+	}
+	
+	# David Kalakaua Kawananakoa
+	option = {
+		name = usa_monarchy.27.c
+		ai_chance = {
+			base = 1
+		}
+		set_party_name = { ideology = monarchism long_name = USA_House_of_Kawananakoa_party_long name = USA_House_of_Kawananakoa_party }
+		create_country_leader = {
+			name = "David Kalakaua Kawananakoa"
+			desc = ""
+			picture = "Portrait_USA_David_Kalakaua_Kawananakoa.dds"
+			expire = "1965.1.1"
+			ideology = constitutional_monarchy
+			traits = {
+			}
+		}
+	}
+	# George Bolling Lee
+	option = {
+		name = usa_monarchy.27.e 
+		ai_chance = {
+			base = 1
+		}
+		create_country_leader = {
+			name = "George Bolling Lee"
+			desc = ""
+			picture = "Portrait_USA_George_Bolling_Lee.dds"
+			expire = "1965.1.1"
+			ideology = constitutional_monarchy
+			traits = {
+			}
+		}
+	}
+}
