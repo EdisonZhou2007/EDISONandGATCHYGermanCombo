@@ -1,0 +1,278 @@
+add_namespace = ss
+
+news_event = {
+	id = ss.1 #Risen from the Ashes - Germany
+	title = ss.1.t
+	desc = ss.1.d
+
+
+	picture = GFX_report_event_german_reichstag_gathering
+	
+
+	is_triggered_only = yes
+	
+	option = {
+		name = ss.1.a #	the reich is reborn!
+		add_political_power = 100
+	}
+	
+
+}
+news_event = {
+	id = ss.2 #The Fascist Menace Reborn - Majors around world
+	title = ss.2.t
+	desc = ss.2.d
+
+	is_triggered_only = yes
+
+	picture = GFX_report_event_german_reichstag_gathering
+
+	fire_only_once = yes
+
+	option = {
+		name = ss.2.a #	There goes peace in our time
+	}
+}
+country_event = {
+	id = ss.3 #The SS Coup - Germany
+	title = ss.3.t
+	desc = ss.3.d
+	
+	is_triggered_only = yes
+
+	picture = GFX_report_event_german_reichstag_gathering
+
+	fire_only_once = yes
+
+	option = {
+		name = ss.3.a # The SS is now in power!
+		kill_country_leader = yes
+		create_country_leader = {
+			name = "Schutzstaffel Temporary Government"
+			desc = "POLITICS_SS_GOVERNMENT"
+			picture = "Portrait_SS_government.dds"
+			expire = "1965.1.1"
+			ideology = nazism
+			traits = { 
+				stammer 
+			}
+		}
+		set_politics = {
+			ruling_party = fascism
+		}
+		hidden_effect = { 	
+		set_cosmetic_tag = GER_SS_flag
+		set_cosmetic_tag = SS_GER
+		add_threat = 10
+		}
+		remove_ideas = GER_clamp_down_on_fascism
+	}
+}
+country_event = {
+	id = ss.4 #Who is the Fuhrer?
+	title = ss.4.t
+	desc = ss.4.d
+	
+	is_triggered_only = yes
+
+	picture = GFX_report_event_german_politician_speech
+
+	fire_only_once = yes
+
+	option = {
+		name = ss.4.a #Himmler
+		ai_chance = {
+			factor = 15
+		}
+		create_country_leader = {
+			name = "Heinrich Himmler"
+			desc = "POLITICS_SS_GOVERNMENT"
+			picture = "Portrait_Germany_Heinrich_Himmler.dds"
+			expire = "1965.1.1"
+			ideology = nazism
+			traits = {  militant_socialist warrior_code warmonger stammer }
+		}
+	}
+	option = {
+		name = ss.4.b #Heydrich
+		ai_chance = {
+			factor = 1
+		}
+		create_country_leader = {
+			name = "Reinhard Heydrich"
+			desc = "POLITICS_SS_GOVERNMENT"
+			picture = "Portrait_Germany_Reinhard_Heydrich.tga"
+			expire = "1965.1.1"
+			ideology = nazism
+			traits = { fascist_militia_leader triumphant_revolutionary nationalist_symbol }
+		}
+	}
+}
+country_event = {
+	id = ss.5 # Nazis re-assume total control
+	title = ss.5.t
+	desc = ss.5.d
+
+	is_triggered_only = yes
+
+	picture = GFX_news_event_german_speech
+
+	fire_only_once = yes
+
+	option = {
+		name = ss.5.a #	The people need to be controlled
+		add_stability = -0.05
+	}
+}
+country_event = {
+	id = ss.6 # The Fuhrer announces Political Reforms
+	title = ss.6.t
+	desc = ss.6.d
+
+	is_triggered_only = yes
+
+	picture = GFX_news_event_german_speech
+
+	fire_only_once = yes
+
+	option = {
+		name = ss.6.a #	A happy reich is a good one
+		add_stability = 0.1
+	}
+}
+country_event = {
+	id = ss.7 # Night of the Rope
+	title = ss.7.t
+	desc = ss.7.d
+
+	is_triggered_only = yes
+
+	picture = GFX_news_event_german_soldiers
+
+	fire_only_once = yes
+
+	option = {
+		name = ss.7.a #	Hang the traitors!
+		add_stability = -0.1
+	}
+}
+country_event = {
+	id = ss.8 # The Reichstag Purged
+	title = ss.8.t
+	desc = ss.8.d
+
+	is_triggered_only = yes
+
+	picture = GFX_news_event_heinrich_himmler
+
+	fire_only_once = yes
+
+	option = {
+		name = ss.8.a #	Advance at all costs!
+		add_stability = -0.1
+	}
+}
+news_event = {
+	id = ss.9
+	title = ss.9.t
+	desc = ss.9.d
+
+	is_triggered_only = yes
+
+	picture = GFX_news_event_heinrich_himmler
+
+	fire_only_once = yes
+
+	option = {
+		name = ss.9.a #	Disgusting
+	}
+}
+news_event = {
+	id = ss.10 # A pleased Populace
+	title = ss.10.t
+	desc = ss.10.d
+
+	is_triggered_only = yes
+
+	picture = GFX_news_event_gathering_protest
+
+	fire_only_once = yes
+
+	option = {
+		name = ss.10.a #YAY!
+	}
+}
+#####STRIKES EVENT CHAIN#####
+country_event = {
+	id = ss.11 #Strikers alert
+	title = ss.11.t
+	desc = ss.11.d
+
+	is_triggered_only = yes
+
+	picture = GFX_news_event_gathering_protest
+
+	fire_only_once = no
+
+	option = {
+		name = ss.11.a # Ignore them
+		hidden_effect = {
+			country_event = ss.12 #Fail
+		}
+	}
+	option = {
+		name = ss.11.b # Talk them out of it
+		add_political_power = -100
+		hidden_effect = {
+			country_event = ss.12 #Fail
+		}
+	}
+	option = {
+		name = ss.11.c # Violent Response
+		add_stability = -0.1
+		hidden_effect = {
+			country_event = ss.13 #KILL
+		}
+	}
+}
+country_event = { # Fail to stop strikes
+	id = ss.12
+	title = ss.12.t
+	desc = ss.12.d
+
+	is_triggered_only = yes
+
+	picture = GFX_news_event_gathering_protest
+
+	fire_only_once = no
+
+	option = {
+		name = ss.12.a #Damn
+		add_ideas = widespread_strikes
+		hidden_effect = {
+			country_event = ss.11
+		}
+		
+	}
+}
+country_event = { # Success in eliminating
+	id = ss.13
+	title = ss.13.t
+	desc = ss.13.d
+
+	is_triggered_only = yes
+
+	picture = GFX_news_event_gathering_protest
+
+	fire_only_once = no
+
+	option = {
+		name = ss.13.a #Let's hope they learned a lesson
+		add_timed_ideas = {
+			idea = brutal_punishers1
+			days = 360
+		}
+		remove_ideas = widespread_strikes
+		
+	}
+}

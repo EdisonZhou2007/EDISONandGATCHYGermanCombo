@@ -1,0 +1,205 @@
+### search_filters = {FOCUS_FILTER_POLITICAL}
+### search_filters = {FOCUS_FILTER_RESEARCH}
+### search_filters = {FOCUS_FILTER_INDUSTRY}
+### search_filters = {FOCUS_FILTER_STABILITY}
+### search_filters = {FOCUS_FILTER_WAR_SUPPORT}
+### search_filters = {FOCUS_FILTER_MANPOWER}
+### search_filters = {FOCUS_FILTER_ANNEXATION}
+
+focus_tree = {
+	id = ss_germany_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 0
+			tag = GER
+		}
+	}
+	
+	default = no
+###POLITICAL TREE###
+
+focus = {
+	id = SS_prepare_the_coup
+	icon = GFX_goal_generic_construction
+	x = 10
+	y = 1
+	cost = 10
+	ai_will_do = {
+		factor = 13
+	}
+	completion_reward = {
+		every_country = {
+			limit = {
+				is_major = yes
+				NOT = { tag = GER }
+			}
+			news_event = ss.2
+		}
+		country_event = ss.3
+	}
+}
+focus = {
+	id = SS_reichsfuhrer_ss 
+	icon = GFX_goal_generic_construction
+	prerequisite = { focus = SS_prepare_the_coup }
+	x = 10
+	y = 2
+	cost = 7
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		country_event = ss.4
+	}
+}
+focus = {
+	id = SS_suppress_resistance
+	icon = GFX_goal_generic_construction
+	prerequisite = { focus = SS_reichsfuhrer_ss }
+	x = 10
+	y = 3
+	cost = 5
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		add_stability = -0.1
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.1
+		}
+	}
+}
+focus = {
+	id = SS_total_control
+	icon = GFX_goal_generic_construction
+	prerequisite = { focus = SS_suppress_resistance }
+	mutually_exclusive = { focus = SS_ease_up }
+	x = 8
+	y = 4
+	cost = 7
+	ai_will_do = {
+		factor = 15
+	}
+	completion_reward = {
+		add_ideas = total_control
+		country_event = ss.5
+		add_threat = 5
+	}
+}
+focus = {
+	id = SS_ease_up 
+	icon = GFX_goal_generic_construction
+	prerequisite = { focus = SS_suppress_resistance }
+	mutually_exclusive = { focus = SS_total_control }
+	x = 12
+	y = 4
+	cost = 7
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		add_ideas = ease_up
+		country_event = ss.6
+	}
+}
+focus = {
+	id = SS_night_of_the_rope
+	icon = GFX_goal_generic_construction
+	prerequisite = { focus = SS_total_control }
+	x = 6
+	y = 5
+	cost = 5
+	ai_will_do = {
+		factor = 15
+	}
+	completion_reward = {
+		add_timed_idea = {
+			idea = brutal_punishers
+			days = 360
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.1
+		}
+		country_event = ss.7
+	}
+}
+focus = {
+	id = SS_empty_reichstag
+	icon = GFX_goal_generic_construction
+	prerequisite = { focus = SS_total_control }
+	x = 8
+	y = 5
+	cost = 5
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.2
+		}
+		hidden_effect = {
+			country_event = ss.8 #Reichstag purged
+			every_country = {
+				limit = {
+					is_major = yes
+					NOT = { tag = GER }
+				}
+				news_event = ss.9 #DISGUSTING!
+			}
+		}
+	}
+}
+focus = {
+	id = SS_happy_reich
+	icon = GFX_goal_generic_construction
+	prerequisite = { focus = SS_ease_up }
+	x = 12
+	y = 5
+	cost = 5
+	ai_will_do = {
+		factor = 8
+	}
+	completion_reward = {
+		add_stability = 0.2
+		add_timed_idea = {
+			idea = happy_reich
+			days = 180
+		}
+		hidden_effect = {
+			news_event = ss.10 # People pleased with new life
+		}
+	}
+}
+focus = {
+	id = SS_freedom_of_speech
+	icon = GFX_goal_generic_construction
+	prerequisite = { focus = SS_happy_reich }
+	x = 12
+	y = 6
+	cost = 7
+	ai_will_do = {
+		factor = 10
+	}
+	completion_reward = {
+		add_ideas = free_speech
+
+		hidden_effect = {
+			country_event = ss.11 # Strikes!!!!
+		}
+	}
+}
+
+
+
+
+
+
+
+
+}
